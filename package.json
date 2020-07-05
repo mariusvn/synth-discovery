@@ -1,0 +1,57 @@
+{
+	"name": "synth-discovery",
+	"version": "1.0.0",
+	"description": "",
+	"main": "dist/bundle.js",
+	"scripts": {
+		"start": "concurrently \"watchify src/index.js -o dist/bundle.js -dv\" \"serve dist\"",
+		"build": "browserify src/index.js -o dist/bundle.js -p tinyify"
+	},
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@babel/core": "^7.10.4",
+		"@babel/plugin-proposal-class-properties": "^7.10.4",
+		"@babel/plugin-proposal-private-methods": "^7.10.4",
+		"@babel/preset-env": "^7.10.4",
+		"@babel/preset-flow": "^7.10.4",
+		"babel-plugin-console-source": "^2.0.5",
+		"babelify": "^10.0.0",
+		"browserify": "^16.5.1",
+		"concurrently": "^5.2.0",
+		"serve": "^11.3.2",
+		"tinyify": "^2.5.2",
+		"watchify": "^3.11.1"
+	},
+	"dependencies": {
+		"dat.gui": "^0.7.7"
+	},
+	"browserify": {
+		"transform": [
+			[
+				"babelify",
+				{
+					"presets": [
+						"@babel/preset-env",
+						"@babel/preset-flow"
+					],
+					"plugins": [
+						[
+							"console-source",
+							{
+								"segments": 1,
+								"splitSegment": "\\"
+							}
+						],
+						[
+							"@babel/plugin-proposal-class-properties"
+						],
+						[
+							"@babel/plugin-proposal-private-methods"
+						]
+					]
+				}
+			]
+		]
+	}
+}
